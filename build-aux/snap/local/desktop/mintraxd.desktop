@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=MINT Core Daemon SNAP
+Comment=main
+GenericName=MINT Digital Currency Daemon Client main network
+Exec=mintrax-core.daemon %u
+Terminal=true
+Type=Application
+Icon=${SNAP}/share/pixmaps/mintrax.png
+MimeType=x-scheme-handler/bib;
+Categories=X-Office;X-Finance;
+Keywords=internet;mintrax;core;wallet;daemon;main;snap;launchpad;crypto;digital;currency;coin;token;
+Version=1.0

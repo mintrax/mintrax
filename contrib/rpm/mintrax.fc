@@ -1,0 +1,8 @@
+/usr/bin/mintrax-cli		--	gen_context(system_u:object_r:mintrax_exec_t,s0)
+/usr/sbin/mintraxd		--	gen_context(system_u:object_r:mintrax_exec_t,s0)
+/usr/lib(64)?/mintrax/mintraxd		--	gen_context(system_u:object_r:mintrax_exec_t,s0)
+
+/etc/mintrax(/.*)?		gen_context(system_u:object_r:mintrax_conf_t,s0)
+/var/lib/mintrax(/.*)?		gen_context(system_u:object_r:mintrax_var_lib_t,s0)
+
+(/var)?/run/mintraxd(/.*)?   gen_context(system_u:object_r:mintrax_var_run_t,s0)

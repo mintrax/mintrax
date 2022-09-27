@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=MINT
+Comment= MINT P2P Cryptocurrency
+Comment[fr]= MINT, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= MINT, eşten eşe kriptografik sanal para birimi
+Exec=mintrax-qt %u
+Terminal=false
+Type=Application
+Icon=mintrax128
+MimeType=x-scheme-handler/mintrax;
+Categories=Office;Finance;
+StartupWMClass=MINT-qt

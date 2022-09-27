@@ -1,0 +1,696 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/mintrax-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# mintrax qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/mintrax/forms/loadingdialog.ui \
+  qt/mintrax/forms/snackbar.ui \
+  qt/mintrax/forms/navmenuwidget.ui \
+  qt/mintrax/forms/lockunlock.ui \
+  qt/mintrax/forms/expandablebutton.ui \
+  qt/mintrax/forms/receivedialog.ui \
+  qt/mintrax/forms/topbar.ui \
+  qt/mintrax/forms/txrow.ui \
+  qt/mintrax/forms/dashboardwidget.ui \
+  qt/mintrax/forms/addresslabelrow.ui \
+  qt/mintrax/forms/contactdropdownrow.ui \
+  qt/mintrax/forms/mninfodialog.ui \
+  qt/mintrax/forms/optionbutton.ui \
+  qt/mintrax/forms/masternodewizarddialog.ui \
+  qt/mintrax/forms/mnrow.ui \
+  qt/mintrax/forms/masternodeswidget.ui \
+  qt/mintrax/forms/myaddressrow.ui \
+  qt/mintrax/forms/sendchangeaddressdialog.ui \
+  qt/mintrax/forms/sendconfirmdialog.ui \
+  qt/mintrax/forms/sendcustomfeedialog.ui \
+  qt/mintrax/forms/sendchangeaddressdialog.ui \
+  qt/mintrax/forms/sendmultirow.ui \
+  qt/mintrax/forms/send.ui \
+  qt/mintrax/forms/addnewaddressdialog.ui \
+  qt/mintrax/forms/addnewcontactdialog.ui \
+  qt/mintrax/forms/requestdialog.ui \
+  qt/mintrax/forms/receivewidget.ui \
+  qt/mintrax/forms/tooltipmenu.ui \
+  qt/mintrax/forms/addresseswidget.ui \
+  qt/mintrax/forms/defaultdialog.ui \
+  qt/mintrax/settings/forms/settingsbackupwallet.ui \
+  qt/mintrax/settings/forms/settingsexportcsv.ui \
+  qt/mintrax/settings/forms/settingsbittoolwidget.ui \
+  qt/mintrax/settings/forms/settingsconsolewidget.ui \
+  qt/mintrax/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/mintrax/settings/forms/settingsfaqwidget.ui \
+  qt/mintrax/settings/forms/settingsinformationwidget.ui \
+  qt/mintrax/settings/forms/settingsmainoptionswidget.ui \
+  qt/mintrax/settings/forms/settingsmultisenddialog.ui \
+  qt/mintrax/settings/forms/settingsmultisendwidget.ui \
+  qt/mintrax/settings/forms/settingssignmessagewidgets.ui \
+  qt/mintrax/settings/forms/settingswalletoptionswidget.ui \
+  qt/mintrax/settings/forms/settingswalletrepairwidget.ui \
+  qt/mintrax/settings/forms/settingswidget.ui \
+  qt/mintrax/forms/welcomecontentwidget.ui \
+  qt/mintrax/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/mintrax/moc_mintraxgui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/mintrax/moc_loadingdialog.cpp \
+  qt/mintrax/moc_pwidget.cpp \
+  qt/mintrax/moc_focuseddialog.cpp \
+  qt/mintrax/moc_snackbar.cpp \
+  qt/mintrax/moc_navmenuwidget.cpp \
+  qt/mintrax/moc_lockunlock.cpp \
+  qt/mintrax/moc_expandablebutton.cpp \
+  qt/mintrax/moc_furabstractlistitemdelegate.cpp \
+  qt/mintrax/moc_receivedialog.cpp \
+  qt/mintrax/moc_pfborderimage.cpp \
+  qt/mintrax/moc_topbar.cpp \
+  qt/mintrax/moc_txrow.cpp \
+  qt/mintrax/moc_dashboardwidget.cpp \
+  qt/mintrax/moc_addresslabelrow.cpp \
+  qt/mintrax/moc_contactdropdownrow.cpp \
+  qt/mintrax/moc_mninfodialog.cpp \
+  qt/mintrax/moc_optionbutton.cpp \
+  qt/mintrax/moc_mnmodel.cpp \
+  qt/mintrax/moc_masternodewizarddialog.cpp \
+  qt/mintrax/moc_mnrow.cpp \
+  qt/mintrax/moc_masternodeswidget.cpp \
+  qt/mintrax/moc_myaddressrow.cpp \
+  qt/mintrax/moc_contactsdropdown.cpp \
+  qt/mintrax/moc_sendchangeaddressdialog.cpp \
+  qt/mintrax/moc_sendconfirmdialog.cpp \
+  qt/mintrax/moc_sendcustomfeedialog.cpp \
+  qt/mintrax/moc_sendchangeaddressdialog.cpp \
+  qt/mintrax/moc_sendmultirow.cpp \
+  qt/mintrax/moc_send.cpp \
+  qt/mintrax/moc_addnewaddressdialog.cpp \
+  qt/mintrax/moc_addnewcontactdialog.cpp \
+  qt/mintrax/moc_requestdialog.cpp \
+  qt/mintrax/moc_receivewidget.cpp \
+  qt/mintrax/moc_tooltipmenu.cpp \
+  qt/mintrax/moc_addresseswidget.cpp \
+  qt/mintrax/moc_defaultdialog.cpp \
+  qt/mintrax/settings/moc_settingsbackupwallet.cpp \
+  qt/mintrax/settings/moc_settingsexportcsv.cpp \
+  qt/mintrax/settings/moc_settingsbittoolwidget.cpp \
+  qt/mintrax/settings/moc_settingsconsolewidget.cpp \
+  qt/mintrax/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/mintrax/settings/moc_settingsfaqwidget.cpp \
+  qt/mintrax/settings/moc_settingsinformationwidget.cpp \
+  qt/mintrax/settings/moc_settingsmainoptionswidget.cpp \
+  qt/mintrax/settings/moc_settingsmultisenddialog.cpp \
+  qt/mintrax/settings/moc_settingsmultisendwidget.cpp \
+  qt/mintrax/settings/moc_settingssignmessagewidgets.cpp \
+  qt/mintrax/settings/moc_settingswalletoptionswidget.cpp \
+  qt/mintrax/settings/moc_settingswalletrepairwidget.cpp \
+  qt/mintrax/settings/moc_settingswidget.cpp \
+  qt/mintrax/moc_welcomecontentwidget.cpp \
+  qt/mintrax/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/mintrax.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/mintrax/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_mintrax.cpp
+QT_QRC = qt/mintrax.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_mintrax_locale.cpp
+QT_QRC_LOCALE = qt/mintrax_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/mintrax/mintraxgui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/trafficgraphwidget.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/mintrax/prunnable.h \
+  qt/mintrax/pfborderimage.h \
+  qt/mintrax/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/mintrax/pwidget.h \
+  qt/mintrax/focuseddialog.h \
+  qt/mintrax/guitransactionsutils.h \
+  qt/mintrax/snackbar.h \
+  qt/mintrax/navmenuwidget.h \
+  qt/mintrax/lockunlock.h \
+  qt/mintrax/receivedialog.h \
+  qt/mintrax/furlistrow.h \
+  qt/mintrax/furabstractlistitemdelegate.h \
+  qt/mintrax/txviewholder.h \
+  qt/mintrax/qtutils.h \
+  qt/mintrax/expandablebutton.h \
+  qt/mintrax/topbar.h \
+  qt/mintrax/txrow.h \
+  qt/mintrax/addressholder.h \
+  qt/mintrax/addressfilterproxymodel.h \
+  qt/mintrax/dashboardwidget.h \
+  qt/mintrax/addresslabelrow.h \
+  qt/mintrax/contactdropdownrow.h \
+  qt/mintrax/mninfodialog.h \
+  qt/mintrax/optionbutton.h \
+  qt/mintrax/mnmodel.h \
+  qt/mintrax/masternodewizarddialog.h \
+  qt/mintrax/mnrow.h \
+  qt/mintrax/masternodeswidget.h \
+  qt/mintrax/myaddressrow.h \
+  qt/mintrax/contactsdropdown.h \
+  qt/mintrax/sendchangeaddressdialog.h \
+  qt/mintrax/sendconfirmdialog.h \
+  qt/mintrax/sendcustomfeedialog.h \
+  qt/mintrax/sendchangeaddressdialog.h \
+  qt/mintrax/sendmultirow.h \
+  qt/mintrax/send.h \
+  qt/mintrax/addnewaddressdialog.h \
+  qt/mintrax/addnewcontactdialog.h \
+  qt/mintrax/requestdialog.h \
+  qt/mintrax/receivewidget.h \
+  qt/mintrax/tooltipmenu.h \
+  qt/mintrax/addresseswidget.h \
+  qt/mintrax/defaultdialog.h \
+  qt/mintrax/settings/settingsbackupwallet.h \
+  qt/mintrax/settings/settingsexportcsv.h \
+  qt/mintrax/settings/settingsbittoolwidget.h \
+  qt/mintrax/settings/settingsconsolewidget.h \
+  qt/mintrax/settings/settingsdisplayoptionswidget.h \
+  qt/mintrax/settings/settingsfaqwidget.h \
+  qt/mintrax/settings/settingsinformationwidget.h \
+  qt/mintrax/settings/settingsmainoptionswidget.h \
+  qt/mintrax/settings/settingsmultisenddialog.h \
+  qt/mintrax/settings/settingsmultisendwidget.h \
+  qt/mintrax/settings/settingssignmessagewidgets.h \
+  qt/mintrax/settings/settingswalletoptionswidget.h \
+  qt/mintrax/settings/settingswalletrepairwidget.h \
+  qt/mintrax/settings/settingswidget.h \
+  qt/mintrax/welcomecontentwidget.h \
+  qt/mintrax/splash.h
+
+RES_ICONS = \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/ic-transaction-received.svg \
+  qt/res/icons/ic-transaction-mint.svg \
+  qt/res/icons/ic-transaction-sent.svg \
+  qt/res/icons/ic-transaction-staked.svg \
+  qt/mintrax/res/img/bg-dashboard-banner.png \
+  qt/mintrax/res/img/bg-multi-number-dark.svg \
+  qt/mintrax/res/img/ic-check-locked.svg \
+  qt/mintrax/res/img/ic-check-console.svg \
+  qt/mintrax/res/img/ic-nav-address.svg \
+  qt/mintrax/res/img/ic-update.svg \
+  qt/mintrax/res/img/bg-multi-number.svg \
+  qt/mintrax/res/img/ic-check-mint-off.svg \
+  qt/mintrax/res/img/ic-nav-dashboard-active.svg \
+  qt/mintrax/res/img/ic-wallet-status-locked.svg \
+  qt/mintrax/res/img/bg-splash.svg \
+  qt/mintrax/res/img/bg-splash.png \
+  qt/mintrax/res/img/ic-check-mint.svg \
+  qt/mintrax/res/img/ic-nav-dashboard-hover.svg \
+  qt/mintrax/res/img/ic-wallet-status-staking.svg \
+  qt/mintrax/res/img/ic-check-peers-off.svg \
+  qt/mintrax/res/img/ic-nav-dashboard.svg \
+  qt/mintrax/res/img/ic-wallet-status-unlocked.svg \
+  qt/mintrax/res/img/ic-check-peers.svg \
+  qt/mintrax/res/img/ic-nav-master-active.svg \
+  qt/mintrax/res/img/ic-watch-password-white.svg \
+  qt/mintrax/res/img/bg-welcome-container.jpg \
+  qt/mintrax/res/img/bg-welcome-container.png \
+  qt/mintrax/res/img/bg-welcome-container.svg \
+  qt/mintrax/res/img/bg-welcome-container@2x.png \
+  qt/mintrax/res/img/bg-welcome-container@3x.png \
+  qt/mintrax/res/img/ic-check-staking-off.svg \
+  qt/mintrax/res/img/ic-nav-master-hover.svg \
+  qt/mintrax/res/img/ic-watch-password.svg \
+  qt/mintrax/res/img/bg-welcome.jpg \
+  qt/mintrax/res/img/bg-welcome.svg \
+  qt/mintrax/res/img/bg-welcome@2x.jpg \
+  qt/mintrax/res/img/bg-welcome@3x.jpg \
+  qt/mintrax/res/img/bg-welcome.png \
+  qt/mintrax/res/img/ic-check-staking.svg \
+  qt/mintrax/res/img/ic-nav-master.svg \
+  qt/mintrax/res/img/img-dashboard-banner.jpg \
+  qt/mintrax/res/img/btn-radio-active.svg \
+  qt/mintrax/res/img/ic-check-mn-conf.svg \
+  qt/mintrax/res/img/ic-check-coin-conf.svg \
+  qt/mintrax/res/img/ic-check-sync-off.svg \
+  qt/mintrax/res/img/ic-nav-privacy-active.svg \
+  qt/mintrax/res/img/img-empty-contacts.svg \
+  qt/mintrax/res/img/btn-radio-off.svg \
+  qt/mintrax/res/img/ic-check-sync.png \
+  qt/mintrax/res/img/ic-nav-privacy-hover.svg \
+  qt/mintrax/res/img/img-empty-dark-contacts.svg \
+  qt/mintrax/res/img/ic-contact-arrow-down.svg \
+  qt/mintrax/res/img/ic-contact-arrow-down-white.svg \
+  qt/mintrax/res/img/ic-check-sync.svg \
+  qt/mintrax/res/img/ic-check-faq.svg \
+  qt/mintrax/res/img/ic-nav-privacy.svg \
+  qt/mintrax/res/img/img-empty-dark-error.svg \
+  qt/mintrax/res/img/ic-add-label.svg \
+  qt/mintrax/res/img/ic-pending.svg \
+  qt/mintrax/res/img/ic-check-theme-dark.svg \
+  qt/mintrax/res/img/ic-nav-receive-active.svg \
+  qt/mintrax/res/img/img-empty-dark-masternode.svg \
+  qt/mintrax/res/img/ic-add-liliac.svg \
+  qt/mintrax/res/img/ic-check-theme-light.svg \
+  qt/mintrax/res/img/ic-nav-receive-hover.svg \
+  qt/mintrax/res/img/img-empty-dark-multisend.png \
+  qt/mintrax/res/img/ic-add-purple.svg \
+  qt/mintrax/res/img/ic-check-white.svg \
+  qt/mintrax/res/img/ic-nav-receive.svg \
+  qt/mintrax/res/img/img-empty-dark-peers.svg \
+  qt/mintrax/res/img/ic-add.svg \
+  qt/mintrax/res/img/ic-check.svg \
+  qt/mintrax/res/img/ic-nav-send-active.svg \
+  qt/mintrax/res/img/img-empty-dark-staking-off.png \
+  qt/mintrax/res/img/img-empty-dark-staking-on.png \
+  qt/mintrax/res/img/ic-address-book-grey.svg \
+  qt/mintrax/res/img/ic-chevron-left.svg \
+  qt/mintrax/res/img/ic-nav-send-hover.svg \
+  qt/mintrax/res/img/img-empty-dark-transactions.png \
+  qt/mintrax/res/img/ic-address-book-white.svg \
+  qt/mintrax/res/img/ic-chevron-right.svg \
+  qt/mintrax/res/img/ic-nav-send.svg \
+  qt/mintrax/res/img/img-empty-error.svg \
+  qt/mintrax/res/img/ic-address-book.svg \
+  qt/mintrax/res/img/ic-clear-liliac.svg \
+  qt/mintrax/res/img/ic-nav-settings-active.svg \
+  qt/mintrax/res/img/img-empty-masternode.svg \
+  qt/mintrax/res/img/ic-address-send-white.svg \
+  qt/mintrax/res/img/ic-clear-purple.svg \
+  qt/mintrax/res/img/ic-nav-settings-hover.svg \
+  qt/mintrax/res/img/img-empty-multisend.png \
+  qt/mintrax/res/img/ic-address-send.svg \
+  qt/mintrax/res/img/ic-close-white.svg \
+  qt/mintrax/res/img/ic-nav-settings.svg \
+  qt/mintrax/res/img/img-empty-peers.svg \
+  qt/mintrax/res/img/img-empty-privacy.png \
+  qt/mintrax/res/img/img-empty-privacy-dark.png \
+  qt/mintrax/res/img/ic-arrow-drop-down-white.svg \
+  qt/mintrax/res/img/ic-close.svg \
+  qt/mintrax/res/img/ic-radio-liliac-on.svg \
+  qt/mintrax/res/img/img-empty-staking-off.png \
+  qt/mintrax/res/img/ic-arrow-drop-down.svg \
+  qt/mintrax/res/img/ic-coin-bib.png \
+  qt/mintrax/res/img/ic-receive-off.svg \
+  qt/mintrax/res/img/img-empty-staking-on.png \
+  qt/mintrax/res/img/ic-arrow-drop-up-white.svg \
+  qt/mintrax/res/img/ic-receive-on.svg \
+  qt/mintrax/res/img/img-empty-transactions.png \
+  qt/mintrax/res/img/ic-arrow-drop-up.svg \
+  qt/mintrax/res/img/ic-received.svg \
+  qt/mintrax/res/img/img-logo-mintrax.png \
+  qt/mintrax/res/img/ic-arrow-drop-white-down.svg \
+  qt/mintrax/res/img/ic-combo-box.svg \
+  qt/mintrax/res/img/ic-send.svg \
+  qt/mintrax/res/img/img-logo-mintrax@2x.png \
+  qt/mintrax/res/img/ic-arrow-purple-down.svg \
+  qt/mintrax/res/img/ic-connect.svg \
+  qt/mintrax/res/img/ic-submenu-lock.svg \
+  qt/mintrax/res/img/img-logo-mintrax@3x.png \
+  qt/mintrax/res/img/img-logo-mintrax.svg \
+  qt/mintrax/res/img/ic-arrow-right-white.svg \
+  qt/mintrax/res/img/ic-arrow-left-white.svg \
+  qt/mintrax/res/img/ic-arrow-left.svg \
+  qt/mintrax/res/img/ic-copy-liliac.svg \
+  qt/mintrax/res/img/ic-submenu-staking.svg \
+  qt/mintrax/res/img/img-nav-logo-mintrax.png \
+  qt/mintrax/res/img/ic-arrow-right.svg \
+  qt/mintrax/res/img/ic-copy.svg \
+  qt/mintrax/res/img/ic-copy-big.svg \
+  qt/mintrax/res/img/ic-copy-big-white.svg \
+  qt/mintrax/res/img/ic-submenu-unlock.svg \
+  qt/mintrax/res/img/img-nav-logo.png \
+  qt/mintrax/res/img/ic-arrow-white-left.svg \
+  qt/mintrax/res/img/ic-exit.svg \
+  qt/mintrax/res/img/ic-switch-liliac-on.svg \
+  qt/mintrax/res/img/img-nav-logo.svg \
+  qt/mintrax/res/img/ic-arrow-white-right.svg \
+  qt/mintrax/res/img/ic-expand.svg \
+  qt/mintrax/res/img/ic-switch-off.svg \
+  qt/mintrax/res/img/img-qr-test-big.png \
+  qt/mintrax/res/img/ic-check-active.svg \
+  qt/mintrax/res/img/ic-folder.svg \
+  qt/mintrax/res/img/ic-switch-on.svg \
+  qt/mintrax/res/img/img-qr-test.png \
+  qt/mintrax/res/img/ic-check-box.svg \
+  qt/mintrax/res/img/ic-check-box-dark-active.svg \
+  qt/mintrax/res/img/ic-check-box-indeterminate.svg \
+  qt/mintrax/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/mintrax/res/img/ic-label-liliac.svg \
+  qt/mintrax/res/img/ic-transaction-warning.svg \
+  qt/mintrax/res/img/ic-transaction-mint.svg \
+  qt/mintrax/res/img/ic-transaction-mint-inactive.svg \
+  qt/mintrax/res/img/img-qr.svg \
+  qt/mintrax/res/img/ic-check-connect-off.svg \
+  qt/mintrax/res/img/ic-check-tor-off.svg \
+  qt/mintrax/res/img/ic-check-tor.svg \
+  qt/mintrax/res/img/ic-label.svg \
+  qt/mintrax/res/img/ic-transaction-received.svg \
+  qt/mintrax/res/img/dark/ic-transaction-received.svg \
+  qt/mintrax/res/img/dark/ic-transaction-warning.svg \
+  qt/mintrax/res/img/dark/ic-transaction-mint.svg \
+  qt/mintrax/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/mintrax/res/img/ic-transaction-received-inactive.svg \
+  qt/mintrax/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/mintrax/res/img/img-welcome-step1.png \
+  qt/mintrax/res/img/ic-check-connect.svg \
+  qt/mintrax/res/img/ic-menu-hover.svg \
+  qt/mintrax/res/img/ic-transaction-sent.svg \
+  qt/mintrax/res/img/ic-transaction-sent-inactive.svg \
+  qt/mintrax/res/img/dark/ic-transaction-sent.svg \
+  qt/mintrax/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/mintrax/res/img/img-welcome-step2.png \
+  qt/mintrax/res/img/ic-check-dark.svg \
+  qt/mintrax/res/img/ic-mint.svg \
+  qt/mintrax/res/img/ic-transaction-staked.svg \
+  qt/mintrax/res/img/ic-transaction-staked-inactive.svg \
+  qt/mintrax/res/img/dark/ic-transaction-staked.svg \
+  qt/mintrax/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/mintrax/res/img/img-welcome-step3.png \
+  qt/mintrax/res/img/ic-check-liliac-on.svg \
+  qt/mintrax/res/img/ic-nav-address-active.svg \
+  qt/mintrax/res/img/ic-unlock-staking.svg \
+  qt/mintrax/res/img/img-welcome-step4.png \
+  qt/mintrax/res/img/ic-check-locked-off.svg \
+  qt/mintrax/res/img/ic-nav-address-hover.svg \
+  qt/mintrax/res/img/ic-update-liliac.svg \
+  qt/mintrax/res/img/ic-arrow-drop-down-purple.svg \
+  qt/mintrax/res/img/ic-arrow-drop-up-purple.svg \
+  qt/mintrax/res/img/ic-check-liliac-indeterminate.svg \
+  qt/mintrax/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/mintrax/res/img/ic-check-box-indeterminate.svg \
+  qt/mintrax/res/img/ani-loading-dark.gif \
+  qt/mintrax/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/mintrax/mintraxgui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/mintrax/loadingdialog.cpp \
+  qt/mintrax/pwidget.cpp \
+  qt/mintrax/focuseddialog.cpp \
+  qt/mintrax/guitransactionsutils.cpp \
+  qt/mintrax/snackbar.cpp \
+  qt/mintrax/navmenuwidget.cpp \
+  qt/mintrax/lockunlock.cpp \
+  qt/mintrax/receivedialog.cpp \
+  qt/mintrax/furabstractlistitemdelegate.cpp \
+  qt/mintrax/txviewholder.cpp \
+  qt/mintrax/qtutils.cpp \
+  qt/mintrax/expandablebutton.cpp \
+  qt/mintrax/topbar.cpp \
+  qt/mintrax/txrow.cpp \
+  qt/mintrax/addressholder.cpp \
+  qt/mintrax/addressfilterproxymodel.cpp \
+  qt/mintrax/dashboardwidget.cpp \
+  qt/mintrax/addresslabelrow.cpp \
+  qt/mintrax/contactdropdownrow.cpp \
+  qt/mintrax/contactsdropdown.cpp \
+  qt/mintrax/optionbutton.cpp \
+  qt/mintrax/mninfodialog.cpp \
+  qt/mintrax/mnmodel.cpp \
+  qt/mintrax/masternodewizarddialog.cpp \
+  qt/mintrax/mnrow.cpp \
+  qt/mintrax/masternodeswidget.cpp \
+  qt/mintrax/myaddressrow.cpp \
+  qt/mintrax/sendchangeaddressdialog.cpp \
+  qt/mintrax/sendconfirmdialog.cpp \
+  qt/mintrax/sendcustomfeedialog.cpp \
+  qt/mintrax/sendchangeaddressdialog.cpp \
+  qt/mintrax/sendmultirow.cpp \
+  qt/mintrax/send.cpp \
+  qt/mintrax/addnewaddressdialog.cpp \
+  qt/mintrax/addnewcontactdialog.cpp \
+  qt/mintrax/requestdialog.cpp \
+  qt/mintrax/receivewidget.cpp \
+  qt/mintrax/tooltipmenu.cpp \
+  qt/mintrax/addresseswidget.cpp \
+  qt/mintrax/defaultdialog.cpp \
+  qt/mintrax/settings/settingsbackupwallet.cpp \
+  qt/mintrax/settings/settingsexportcsv.cpp \
+  qt/mintrax/settings/settingsbittoolwidget.cpp \
+  qt/mintrax/settings/settingsconsolewidget.cpp \
+  qt/mintrax/settings/settingsdisplayoptionswidget.cpp \
+  qt/mintrax/settings/settingsfaqwidget.cpp \
+  qt/mintrax/settings/settingsinformationwidget.cpp \
+  qt/mintrax/settings/settingsmainoptionswidget.cpp \
+  qt/mintrax/settings/settingsmultisenddialog.cpp \
+  qt/mintrax/settings/settingsmultisendwidget.cpp \
+  qt/mintrax/settings/settingssignmessagewidgets.cpp \
+  qt/mintrax/settings/settingswalletoptionswidget.cpp \
+  qt/mintrax/settings/settingswalletrepairwidget.cpp \
+  qt/mintrax/settings/settingswidget.cpp \
+  qt/mintrax/welcomecontentwidget.cpp \
+  qt/mintrax/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/mintrax/res/css/style_dark.css \
+  qt/mintrax/res/css/style_light.css
+
+BITCOIN_RC = qt/res/mintrax-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_mintrax_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# mintrax-qt binary #
+qt_mintrax_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_mintrax_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_mintrax_qt_SOURCES = qt/mintrax.cpp
+if TARGET_DARWIN
+  qt_mintrax_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_mintrax_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_mintrax_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_mintrax_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_mintrax_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_mintrax_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_mintrax_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_mintrax_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/mintraxstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/mintraxstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/mintrax.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/mintrax_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name mintrax_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name mintrax $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_mintrax_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+mintrax_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_mintrax_qt_OBJECTS) qt/mintrax-qt$(EXEEXT) $(LIBBITCOINQT)
+
+mintrax_qt : qt/mintrax-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

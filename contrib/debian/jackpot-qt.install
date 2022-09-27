@@ -1,0 +1,6 @@
+usr/local/bin/mintrax-qt usr/bin
+share/pixmaps/mintrax32.xpm usr/share/pixmaps
+share/pixmaps/mintrax16.xpm usr/share/pixmaps
+share/pixmaps/mintrax128.png usr/share/pixmaps
+debian/mintrax-qt.desktop usr/share/applications
+debian/mintrax-qt.protocol usr/share/kde4/services/

@@ -1,0 +1,15 @@
+QT_TS = \
+  qt/locale/mintrax_de.ts \
+  qt/locale/mintrax_en.ts \
+  qt/locale/mintrax_en_US.ts \
+  qt/locale/mintrax_es.ts \
+  qt/locale/mintrax_es_ES.ts \
+  qt/locale/mintrax_fr_FR.ts \
+  qt/locale/mintrax_hr_HR.ts \
+  qt/locale/mintrax_it.ts \
+  qt/locale/mintrax_ko_KR.ts \
+  qt/locale/mintrax_nl.ts \
+  qt/locale/mintrax_pl.ts \
+  qt/locale/mintrax_ru.ts \
+  qt/locale/mintrax_tr.ts \
+  qt/locale/mintrax_zh_CN.ts
