@@ -1,6 +1,6 @@
-<h1>MINT COIN</h1>
-<p> MINT is a digital crypto currency based on blockchain technology to assess and convert coin projects usecases into funded and tradeable equity.<p>
-<p> Mintrax utilizes a Proof of Stake (PoS) consensus system algorithm, allowing all owners of MINT to participate in earning block rewards while securing as well as to run Masternodes thereby generating passive income.<p>
+<h1>MINTRAX</h1>
+<p>Mintrax is an immutable network that implements identity protection across verifications platforms and decentralized secured ballot casting.<p>
+<p> Mintrax utilizes a Proof of Stake (PoS) consensus system algorithm, allowing all owners of MINT to participate in earning block rewards while securing MINT network as well as run Masternodes servers to generate passive income.<p>
 
   
  <h2><strong>Specification:</strong></h2>
@@ -8,11 +8,11 @@
 <tbody>
 <tr>
 <td>Coin Name & Ticker</td>
-<td>MINT [MINT]</td>
+<td>MINTRAX [MINT]</td>
 </tr>
 <tr>
 <td>Coin Type</td>
-<td>POS + Masternodes</td>
+<td>PoS + Masternodes</td>
 </tr>
 <tr>
 <td>Block Time</td>
